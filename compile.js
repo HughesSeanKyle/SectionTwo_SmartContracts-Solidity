@@ -9,7 +9,7 @@ const inboxPath = path.resolve(__dirname, 'contracts', 'Inbox.sol');
 const source = fs.readFileSync(inboxPath, 'utf8');
 
 
-console.log(solc.compile(source, 1)); //args 1: What to compile, 2: How many different contracts to compile.
+module.exports =  solc.compile(source, 1).contracts[':Inbox']; //args 1: What to compile, 2: How many different contracts to compile.
 
 
 
