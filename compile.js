@@ -11,28 +11,16 @@ const source = fs.readFileSync(inboxPath, 'utf8');
 
 module.exports =  solc.compile(source, 1).contracts[':Inbox']; //args 1: What to compile, 2: How many different contracts to compile.
 
+//This Scripts main purpose is to return an ABI and Byte code.
+  //ABI = Solidity <---> Javascript Communication layer
+  //byte code - Smart contract encoded to store on blockchain
+
+//Ganache use to be named TestRPC
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//require('./contracts/Inbox.sol'); //BAD! When using require node will think it is javascript but we are importing solidity
+  //require('./contracts/Inbox.sol'); //BAD! When using require node will think it is javascript but we are importing solidity
 
 /*
 The Promise.resolve(value) method returns a Promise object that is resolved with the given value. If the value is a promise, that promise is returned; if the value is a thenable (i.e. has a "then" method), the returned promise will "follow" that thenable, adopting its eventual state; otherwise the returned promise will be fulfilled with the value. This function flattens nested layers of promise-like objects (e.g. a promise that resolves to a promise that resolves to something) into a single layer.
