@@ -17,24 +17,16 @@ beforeEach(async () => {
   accounts = await web3.eth.getAccounts();
 
   //use one of these accounts to deploy contract
-  inbox = new web3.eth.Contract(JSON.parse(interface))
+  inbox = await new web3.eth.Contract(JSON.parse(interface))
   .deploy({ data: bytecode, arguments: ['Hi there!'] })
   .send({ from: accounts[0], gas: '1000000' })
 });
 
 describe('Inbox', () => {
   it('deploys a contract', () => {
-    console.log(inbox);
+    assert.ok(inbox.options.address);
   });
 });
-
-
-
-
-
-
-
-
 
 
 
@@ -47,5 +39,6 @@ describe('Inbox', () => {
 1. One instance of web3 connects to the particular test or main network you wich to connect to. 
 2. Provider - Communitation layer between Web3 lib and some specific ethereum network.
 3. The assert module provides a way of testing expressions. If the expression evaluates to 0, or false, an assertion failure is being caused, and the program is terminated. This module was built to be used internally by Node.
-4. Almost every function that is called with web3 is asynchronous which means it will return a promise.  
+4. Almost every function that is called with web3 is asynchronous which means it will return a promise. 
+5. The 'ok' method makes an assertion that whatever is passed into the function is a value that exists. If null, test fails
 */
