@@ -29,15 +29,30 @@ beforeEach(async () => {
 });
 
 describe('Inbox', () => {
+  //Does not need to fetch info from Ganache. 
+    //Info comes from compiler which is local
+      //No promise returned. Therefore, no async.
   it('deploys a contract', () => {
     assert.ok(inbox.options.address);
   });
 
+  //Fetches data of contract from Ganache Test Network THEN
+    //Does assertion. Therefore, async required. 
   it('has a default message', async () => {
     const message = await inbox.methods.message().call();
     //checks if initial message equal to 'Hi there!'
     assert.equal(message, 'Hi there!');
   });
+
+  //Sends data to test network and waits for response THEN
+    //Does assertion to check if message equal to 'bye'
+      //Therefore, asynchronous in nature.
+
+  it('can change the message', async () => {
+    await inbox.methods.setMessage('bye').send({ from: accounts[0] })
+    const message = await inbox.methods.message().call();
+    assert.equal(message, 'bye');
+  });  
 });
 
 
@@ -56,4 +71,8 @@ describe('Inbox', () => {
 6. The part of Ethereum that runs the smart contract instructions is called the EVM. ... The EVM reads a low-level representation of smart contracts called the Ethereum bytecode. The Ethereum bytecode is an assembly language made up of multiple opcodes. Each opcode performs a certain action on the Ethereum blockchain.
 7. Methods in this scenario refers to the methods in the contract. Inbox and setMessage.
 8. arguments: ['Hi there!'] - Initial message.
+9. send() - can be thought of as send transaction
+    Arg inside: from: account[0] - specifies who will be paying the gas fee for transaction. In this case the first account in the unlocked accounts provided by ganache.
+
+    When info sent to transaction as transaction hash is returned (Almost like receipt).
 */
