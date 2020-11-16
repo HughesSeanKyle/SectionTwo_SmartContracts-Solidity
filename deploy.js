@@ -7,6 +7,6 @@ const keys = require('./config/keys');
 
 const provider = new HDWalletProvider(
     keys.metaMaskMnemonic,
-    keys.InfuraLink
+    keys.InfuraLinkRinkeby
 );
 const web3 = new Web3(provider);
