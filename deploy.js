@@ -5,7 +5,6 @@ const { interface, bytecode } = require('./compile');
 
 const keys = require('./config/keys');
 
-// HDWallet helps to generate public key, Pvt key and address of OUR account
 const provider = new HDWalletProvider(
     keys.metaMaskMnemonic,
     keys.InfuraLinkRinkeby
